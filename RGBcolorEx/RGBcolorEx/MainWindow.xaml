@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGBcolorEx"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="RGBcolorEx" Height="500" Width="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
         
+        <Label Content="R" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <Slider x:Name="sldR" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" ValueChanged="sldR_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
+        <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldR, Path=Value}"></TextBox>
+        
+        <Label Content="G" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <Slider x:Name="sldG" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
+        <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldG, Path=Value}"></TextBox>
+        
+        <Label Content="B" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <Slider x:Name="sldB" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
+        <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldB, Path=Value}"></TextBox>
+
+        <Rectangle Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" Fill="Red" Margin="5"></Rectangle>
+        <Button Grid.Row="3" Grid.Column="3" Height="20" VerticalAlignment="Top" Margin="5">Add</Button>
+
+        <ListBox Grid.Row="4" Grid.ColumnSpan="4" Margin="20"></ListBox>
+        <Button Grid.Row="5" Grid.Column="3" Height="20" VerticalAlignment="Top" Margin="5">Remove</Button>
+
     </Grid>
+
 </Window>

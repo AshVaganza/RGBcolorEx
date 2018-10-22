@@ -24,5 +24,10 @@ namespace RGBcolorEx
         {
             InitializeComponent();
         }
+
+        private void sldR_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
