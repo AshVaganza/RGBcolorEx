@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:RGBcolorEx"
         mc:Ignorable="d"
         Title="RGBcolorEx" Height="500" Width="500">
+    <Window.Resources>
+        <local:RgbToHtmlColorConverter x:Key="Converter"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -24,18 +27,18 @@
         </Grid.RowDefinitions>
         
         <Label Content="R" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider x:Name="sldR" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" ValueChanged="sldR_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
-        <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldR, Path=Value}"></TextBox>
+        <Slider Value="{Binding Code.R}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" ValueChanged="sldR_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1" ></Slider>
+        <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.R}" ></TextBox>
         
         <Label Content="G" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider x:Name="sldG" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
-        <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldG, Path=Value}"></TextBox>
+        <Slider Value="{Binding Code.G}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
+        <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.G}"></TextBox>
         
         <Label Content="B" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider x:Name="sldB" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
-        <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=sldB, Path=Value}"></TextBox>
+        <Slider Value="{Binding Code.B}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
+        <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.B}"></TextBox>
 
-        <Rectangle Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" Fill="Red" Margin="5"></Rectangle>
+        <Rectangle Grid.Row="0" Grid.Column="3" Grid.RowSpan="3"  Margin="5" Fill="{Binding Code,Converter={StaticResource Converter}}"></Rectangle>
         <Button Grid.Row="3" Grid.Column="3" Height="20" VerticalAlignment="Top" Margin="5">Add</Button>
 
         <ListBox Grid.Row="4" Grid.ColumnSpan="4" Margin="20"></ListBox>

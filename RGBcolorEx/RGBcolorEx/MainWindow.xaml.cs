@@ -23,11 +23,18 @@ namespace RGBcolorEx
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel();
         }
 
         private void sldR_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
         }
+
+        private void txtR_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
     }
 }
