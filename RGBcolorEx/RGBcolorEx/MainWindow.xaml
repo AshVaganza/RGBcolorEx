@@ -107,7 +107,7 @@
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Width="Auto">
+                    <TextBlock Foreground="White">
                         <TextBlock.Background>
                             <SolidColorBrush>
                                 <SolidColorBrush.Color>

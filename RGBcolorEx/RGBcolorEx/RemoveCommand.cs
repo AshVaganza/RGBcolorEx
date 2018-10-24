@@ -28,6 +28,10 @@ namespace RGBcolorEx
 
         public bool CanExecute(object parameter)
         {
+            if (_vm.SelectedItem != null)
+            {
+                SetSelectColor();
+            }
             return _vm.SelectedItem != null;
         }
 
@@ -37,5 +41,13 @@ namespace RGBcolorEx
         }
 
         public event EventHandler CanExecuteChanged;
+
+        private void SetSelectColor()
+        {
+            _vm.Code.R = _vm.SelectedItem.R;
+            _vm.Code.G = _vm.SelectedItem.G;
+            _vm.Code.B = _vm.SelectedItem.B;
+        }
+
     }
 }

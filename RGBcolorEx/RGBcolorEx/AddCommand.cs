@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace RGBcolorEx
@@ -29,14 +33,13 @@ namespace RGBcolorEx
 
         public void Execute(object parameter)
         {
-            _vm.Items.Add(_vm.Code);
-            _vm.Code = new RgbCode { R = 0, G = 0, B = 0 };
+            _vm.Items.Add(new RgbCode
+            {
+                R = _vm.Code.R,
+                G = _vm.Code.G,
+                B = _vm.Code.B,
+            });
         }
-
-        //_vm.Code.R = 0;
-        //_vm.Code.G = 0;
-        //_vm.Code.B = 0;
-
         public event EventHandler CanExecuteChanged;
     }
 }
