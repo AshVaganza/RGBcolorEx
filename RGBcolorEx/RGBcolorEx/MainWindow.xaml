@@ -8,6 +8,7 @@
         Title="RGBcolorEx" Height="500" Width="500">
     <Window.Resources>
         <local:RgbToHtmlColorConverter x:Key="Converter"/>
+        <local:RGBtoListConverter x:Key="ConvertListItem"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,23 +27,115 @@
             <RowDefinition Height="0.7*"/>
         </Grid.RowDefinitions>
         
-        <Label Content="R" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider Value="{Binding Code.R}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" ValueChanged="sldR_ValueChanged" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1" ></Slider>
-        <TextBox Grid.Row="0" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.R}" ></TextBox>
+        <Label Content="R"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"></Label>
+        <Slider Value="{Binding Code.R}"
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Maximum="255"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1" ></Slider>
+        <TextBox Grid.Row="0"
+                 Grid.Column="2"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"
+                 Text="{Binding Code.R}" ></TextBox>
         
-        <Label Content="G" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider Value="{Binding Code.G}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
-        <TextBox Grid.Row="1" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.G}"></TextBox>
+        <Label Content="G"
+               Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"></Label>
+        <Slider Value="{Binding Code.G}"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Maximum="255"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1"></Slider>
+        <TextBox Grid.Row="1"
+                 Grid.Column="2"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"
+                 Text="{Binding Code.G}"></TextBox>
         
-        <Label Content="B" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Slider Value="{Binding Code.B}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" IsSnapToTickEnabled="True" TickFrequency="1"></Slider>
-        <TextBox Grid.Row="2" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Code.B}"></TextBox>
+        <Label Content="B"
+               Grid.Row="2"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"></Label>
+        <Slider Value="{Binding Code.B}"
+                Grid.Row="2"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Maximum="255"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1"></Slider>
+        <TextBox Grid.Row="2"
+                 Grid.Column="2"
+                 TextAlignment="Center"
+                 VerticalAlignment="Center"
+                 Text="{Binding Code.B}"></TextBox>
 
-        <Rectangle Grid.Row="0" Grid.Column="3" Grid.RowSpan="3"  Margin="5" Fill="{Binding Code,Converter={StaticResource Converter}}"></Rectangle>
-        <Button Grid.Row="3" Grid.Column="3" Height="20" VerticalAlignment="Top" Margin="5">Add</Button>
+        
+        <Rectangle Grid.Row="0"
+                   Grid.Column="3"
+                   Grid.RowSpan="3"
+                   Margin="5"
+                   Stroke="LightGray"                   
+                   Fill="{Binding Path=Code,Converter={StaticResource Converter}}"></Rectangle>
+        
+        <Button Grid.Row="3"
+                Grid.Column="3"
+                Height="20"
+                VerticalAlignment="Top"
+                Margin="5"
+                Command="{Binding Path=Add}">Add</Button>
 
-        <ListBox Grid.Row="4" Grid.ColumnSpan="4" Margin="20"></ListBox>
-        <Button Grid.Row="5" Grid.Column="3" Height="20" VerticalAlignment="Top" Margin="5">Remove</Button>
+        <ListBox Grid.Row="4"
+                 Grid.ColumnSpan="4"
+                 Margin="20"
+                 ItemsSource="{Binding Path=Items}"
+                 SelectedItem="{Binding Path=SelectedItem}"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Width="Auto">
+                        <TextBlock.Background>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ConvertListItem}">
+                                        <Binding Path="R" />
+                                        <Binding Path="G" />
+                                        <Binding Path="B" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </TextBlock.Background>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}({0}, {1}, {2})">
+                                <Binding Path="R" />
+                                <Binding Path="G" />
+                                <Binding Path="B" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="5"
+                Grid.Column="3"
+                Height="20"
+                VerticalAlignment="Top"
+                Margin="5"
+                Command="{Binding Path=Remove}">Remove</Button>
 
     </Grid>
 
